@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #03ffd9, #00f593); /* Perpaduan hijau dan biru */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: rgb(255, 255, 255); /* Warna latar kotak login */
+            padding: 40px 50px; /* Padding yang lebih kecil */
+            border-radius: 8px; /* Radius yang lebih kecil */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Menambahkan sedikit bayangan */
+            width: 300px;
+        }
+        .login-container h2 {
+            text-align: center;
+            color: #000000;
+            font-family: 'Times New Roman', serif; /* Mengubah font ke Times New Roman */
+        }
+        .form-input {
+            margin-top: 20px;
+            position: relative;
+        }
+        .icon {
+            position: absolute;
+            left: 10px;
+            top: 30px; /* Diubah dari 20px menjadi 25px untuk menurunkan ikon sedikit */
+            color: #000000;
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 83%;
+            padding: 10px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding-left: 40px;
+        }
+        .login-button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #0c58fc;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        /* Media query untuk layar yang lebih kecil seperti ponsel */
+        @media (max-width: 768px) {
+            .login-button {
+                padding: 15px; /* Meningkatkan padding untuk tampilan yang lebih baik di layar kecil */
+                font-size: 16px; /* Meningkatkan ukuran font agar lebih mudah dibaca */
+            }
+        }
+        .profile-icon i {
+            font-size: 50px; /* Ukuran ikon diperbesar */
+            color: #000000; /* Warna ikon diubah menjadi biru */
+            text-shadow: 4px 4px 8px rgb(112, 111, 111); /* Menambahkan bayangan pada ikon */
+            top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="profile-icon" style="text-align: center;">
+            <i class="fas fa-user"></i>
+        </div>
+        <h2>SNEAKERS STORE</h2>
+        <form action="Dashboard index.html">
+            <div class="form-input">
+                <i class="fa fa-envelope icon"></i>
+                <input type="email" placeholder="Email" required>
+            </div>
+            <div class="form-input">
+                <i class="fa fa-lock icon"></i>
+                <input type="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="login-button">LOGIN</button>
+            <a href="reset_password.html" style="display: block; text-align: center; margin-top: 15px;">Lupa Password?</a>
+            <span id="forgotPasswordMessage" style="display: none; text-align: center; color: red; margin-top: 10px;"></span>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.querySelector('form');
+            const emailInput = document.querySelector('input[type="email"]');
+            const passwordInput = document.querySelector('input[type="password"]');
+            const loginButton = document.querySelector('.login-button');
+            const forgotPasswordLink = document.querySelector('a[href="reset_password.html"]');
+            const forgotPasswordMessage = document.getElementById('forgotPasswordMessage');
+
+            loginForm.addEventListener('submit', function(event) {
+                if (emailInput.value === '' || passwordInput.value === '') {
+                    event.preventDefault(); // Mencegah form dari submit jika salah satu field kosong
+                    alert('Harap isi kedua field email dan password.');
+                } else {
+                    loginButton.innerHTML = 'Memuat.....'; // Mengubah teks tombol
+                    loginButton.style.backgroundColor = '#4CAF50'; // Mengubah warna tombol
+
+                    setTimeout(function() {
+                        window.location.href = 'dashboard index.html'; // Pindah ke halaman Dashboard setelah delay
+                    }, 2000); // Delay 2000 ms atau 2 detik
+                }
+            });
+
+            forgotPasswordLink.addEventListener('click', function(event) {
+                event.preventDefault(); // Mencegah navigasi ke halaman reset_password.html
+                forgotPasswordMessage.style.display = 'block';
+                forgotPasswordMessage.textContent = 'MAKANYA SERING BELANJA DI SNEAKERS STORE, KAN LUPA JADINYA.';
+            });
+        });
+    </script>
+</body>
+</html>
+
